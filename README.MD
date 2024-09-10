@@ -27,6 +27,7 @@ ISW_2024_4K1_GRUPO7
 ├── Entregas
 │   ├── Trabajos Conceptuales
 │   ├── Trabajos Prácticos
+│   	├── ISW_TP_6
 ├── Material de estudio
 │   ├── Bibliografía
 │   ├── Clases grabadas
@@ -46,15 +47,16 @@ ISW_2024_4K1_GRUPO7
 | Ítem de Configuración                | Regla de Nombrado                       | Ubicación |
 | ------------------- | ---------------------------------------- | ------------- |
 | Programa de Asignatura | ISW_ProgramaAsignatura_2024.pdf          | ISW_2024_4K1_GRUPO7\Programa    |
-| Trabajos Prácticos | ISW_TP_<<NúmeroDeTP>>_<<Título>>.pdf                | ISW_2024_4K1_GRUPO7\Entregas\Trabajos Prácticos    |
+| Trabajos Prácticos (consignas) | ISW_TP_<<NúmeroDeTP>>_<<Título>>.pdf     | ISW_2024_4K1_GRUPO7\Entregas\Trabajos Prácticos\*\	|
+| Trabajo Practico (carpeta)|  ISW_TP_<<NúmeroDeTP>>\         |           ISW_2024_4K1_GRUPO7\Entregas\Trabajos Prácticos\
 | Trabajos Conceptuales | ISW_TC_<<NúmeroDeTC>>_<<Título>>.pdf              | ISW_2024_4K1_GRUPO7\Entregas\Trabajos Conceptuales    |
 | Diapositivas           | ISW_PPT_U<<Número de unidad>>_\<<Tema\>>.[pdf/pptx] | ISW_2024_4K1_GRUPO7\Material de estudio\Diapositivas  |
 | Resúmenes           | ISW_RES_<<Título del resumen>>.pdf         | ISW_2024_4K1_GRUPO7\Material de estudio\Resúmenes    |
 | Bibliografía        | ISW_BB_\<<Nombre del documento\>>.pdf       | ISW_2024_4K1_GRUPO7\Material estudio\Bibliografía    |
 | Notas de Clase      | ISW_NT_\<<Tema\>>_<Nombre_Apellido>.pdf | ISW_2024_4K1_GRUPO7\Material de estudio\Notas de Clase |
 | Clases grabadas      | ISW_CG.pdf | ISW_2024_4K1_GRUPO7\Material de estudio\Clases grabadas |
-
-
+| 
+|
 
 
 
@@ -75,6 +77,7 @@ ISW_2024_4K1_GRUPO7
 | **\<<Tema\>>** | Título del tema al que corresponde una presentación o nota de clase. | 
 | **\<<NombreDelDocumento\>>** | Título del archivo correspondiente a un libro, paper, o documento de Bibliografía. | 
 | **<<Nombre_Apellido>>** | Nombre y apellido del autor de un ítem de Configuración de notas de clase. |
+| * | el asterisco en la ubicacion significa que puede intercambiarse por cualquier ruta inmediata posible desde esa ubicacion.| 
 
 
 
