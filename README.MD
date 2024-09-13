@@ -30,12 +30,9 @@ ISW_2024_4K1_GRUPO7
 │   	├── ISW_TP_6
 ├── Material de estudio
 │   ├── Bibliografía
-│   ├── Clases grabadas
 │   ├── Diapositivas
 │   ├── Notas de clase
 │   ├── Resúmenes
-├── Programa de la asignatura
-
 
 
 ```
@@ -46,7 +43,7 @@ ISW_2024_4K1_GRUPO7
 
 | Ítem de Configuración                | Regla de Nombrado                       | Ubicación |
 | ------------------- | ---------------------------------------- | ------------- |
-| Programa de Asignatura | ISW_ProgramaAsignatura_2024.pdf          | ISW_2024_4K1_GRUPO7\Programa    |
+| Programa de Asignatura | ISW_ProgramaAsignatura_2024.pdf          | ISW_2024_4K1_GRUPO7    |
 | Trabajos Prácticos (consignas) | ISW_TP_<<NúmeroDeTP>>_<<Título>>.pdf     | ISW_2024_4K1_GRUPO7\Entregas\Trabajos Prácticos\*\	|
 | Trabajo Practico (carpeta)|  ISW_TP_<<NúmeroDeTP>>\         |           ISW_2024_4K1_GRUPO7\Entregas\Trabajos Prácticos\
 | Trabajos Conceptuales | ISW_TC_<<NúmeroDeTC>>_<<Título>>.pdf              | ISW_2024_4K1_GRUPO7\Entregas\Trabajos Conceptuales    |
@@ -54,9 +51,8 @@ ISW_2024_4K1_GRUPO7
 | Resúmenes           | ISW_RES_<<Título del resumen>>.pdf         | ISW_2024_4K1_GRUPO7\Material de estudio\Resúmenes    |
 | Bibliografía        | ISW_BB_\<<Nombre del documento\>>.pdf       | ISW_2024_4K1_GRUPO7\Material estudio\Bibliografía    |
 | Notas de Clase      | ISW_NT_\<<Tema\>>_<Nombre_Apellido>.pdf | ISW_2024_4K1_GRUPO7\Material de estudio\Notas de Clase |
-| Clases grabadas      | ISW_CG.pdf | ISW_2024_4K1_GRUPO7\Material de estudio\Clases grabadas |
-| 
-|
+| Clases grabadas      | ISW_CG.pdf | ISW_2024_4K1_GRUPO7\Material de estudio |
+
 
 
 
@@ -84,4 +80,4 @@ ISW_2024_4K1_GRUPO7
 
 ## Criterio de establecimiento de Lineas Base
 
-En nuestro repositorio, la Línea Base se establecerá al finalizar y aprobar cada Trabajo Práctico o Trabajo Conceptual.
+En nuestro repositorio, la Línea Base se establecerá al aprobar cada Trabajo Práctico o Trabajo Conceptual, de no aprobarse, no se cumplirá el criterio.
