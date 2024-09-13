@@ -44,8 +44,7 @@ ISW_2024_4K1_GRUPO7
 | Ítem de Configuración                | Regla de Nombrado                       | Ubicación |
 | ------------------- | ---------------------------------------- | ------------- |
 | Programa de Asignatura | ISW_ProgramaAsignatura_2024.pdf          | ISW_2024_4K1_GRUPO7    |
-| Trabajos Prácticos (consignas) | ISW_TP_<<NúmeroDeTP>>_<<Título>>.pdf     | ISW_2024_4K1_GRUPO7\Entregas\Trabajos Prácticos\*\	|
-| Trabajo Practico (carpeta)|  ISW_TP_<<NúmeroDeTP>>\         |           ISW_2024_4K1_GRUPO7\Entregas\Trabajos Prácticos\
+| Trabajos Prácticos | ISW_TP_<<NúmeroDeTP>>_<<Título>>.pdf     | ISW_2024_4K1_GRUPO7\Entregas\Trabajos Prácticos\*\	|
 | Trabajos Conceptuales | ISW_TC_<<NúmeroDeTC>>_<<Título>>.pdf              | ISW_2024_4K1_GRUPO7\Entregas\Trabajos Conceptuales    |
 | Diapositivas           | ISW_PPT_U<<Número de unidad>>_\<<Tema\>>.[pdf/pptx] | ISW_2024_4K1_GRUPO7\Material de estudio\Diapositivas  |
 | Resúmenes           | ISW_RES_<<Título del resumen>>.pdf         | ISW_2024_4K1_GRUPO7\Material de estudio\Resúmenes    |
