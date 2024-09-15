@@ -1,0 +1,5 @@
+include:
+  - project: ci-cd/utils-templates
+    ref: master
+    file: 
+      - pipeline-dds.yml
