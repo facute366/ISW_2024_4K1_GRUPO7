@@ -1,25 +1,24 @@
-import React, {  useState } from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 
-import ListadoTransportistas from './ListadoTransportistas'
+import ListadoTransportistas from './ListadoTransportistas';
 
 const Transportistas = () => {
   const { register, handleSubmit } = useForm();
-  
   const [lista, setLista] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const onSubmit = async (data) => {
+    setLoading(true); 
     try {
       const response = await axios.get('http://localhost:4000/api/Transportistas', {
         params: data.id
       });
-      
-      console.log(response.data)
-
-      setLista(response.data)
+      console.log(response.data);
+      setLista(response.data);
     } catch (error) {
-      await setLista([
+      setLista([
         {
           id: 1,
           nombre: "Transportista A",
@@ -66,21 +65,35 @@ const Transportistas = () => {
           formasDePago: ["efectivo", "tarjeta", "transferencia"],
         },
       ]);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div className="container">
-     <h1>Transportistas</h1>
-     <hr />
+      <h1>Transportistas</h1>
+      <hr />
       <div className="card mb-3">
         <div className="card-body">
           <form onSubmit={handleSubmit(onSubmit)}>
-            <button type="submit" className="btn btn-primary">Buscar</button>
+            <button type="submit" className="btn btn-primary">
+              Buscar
+            </button>
           </form>
         </div>
       </div>
-      {lista && <ListadoTransportistas lista={lista} />}
+      
+      {/* Mostrar mensaje de "Cargando..." mientras loading es true */}
+      {loading && (
+        <div className="loading-container">
+          <div className="spinner"></div>
+          <p>Cargando transportistas...</p>
+        </div>
+      )}
+      
+      {/* Mostrar listado de transportistas una vez que loading sea false y haya resultados */}
+      {!loading && lista && <ListadoTransportistas lista={lista} />}
     </div>
   );
 };

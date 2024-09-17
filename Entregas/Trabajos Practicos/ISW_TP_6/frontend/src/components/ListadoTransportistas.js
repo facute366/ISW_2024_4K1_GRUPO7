@@ -12,6 +12,8 @@ const ListadoTransportistas = ({ lista }) => {
   const [numeroDocumento, setNumeroDocumento] = useState('');
 
   const [errores, setErrores] = useState({});
+
+  
   
   // Configurar envío de correo con Formspree
   const [state, handleSubmit] = useForm("xovazbgd");
