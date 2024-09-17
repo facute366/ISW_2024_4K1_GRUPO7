@@ -27,7 +27,7 @@ const Transportistas = () => {
           fechaDeRetiro: "2024-09-01",
           fechaEntrega: "2024-09-07",
           importe: 3500,
-          formasDePago: ["efectivo", "tarjeta"],
+          formasDePago: ["efectivo", "tarjeta", "transferencia"],
         },
         {
           id: 2,
@@ -36,7 +36,7 @@ const Transportistas = () => {
           fechaDeRetiro: "2024-09-02",
           fechaEntrega: "2024-09-08",
           importe: 4200,
-          formasDePago: ["tarjeta", "transferencia"],
+          formasDePago: ["efectivo", "tarjeta", "transferencia"],
         },
         {
           id: 3,
@@ -54,7 +54,7 @@ const Transportistas = () => {
           fechaDeRetiro: "2024-09-05",
           fechaEntrega: "2024-09-10",
           importe: 3800,
-          formasDePago: ["efectivo"],
+          formasDePago: ["efectivo", "tarjeta", "transferencia"],
         },
         {
           id: 5,
@@ -63,7 +63,7 @@ const Transportistas = () => {
           fechaDeRetiro: "2024-09-06",
           fechaEntrega: "2024-09-12",
           importe: 4500,
-          formasDePago: ["tarjeta", "transferencia"],
+          formasDePago: ["efectivo", "tarjeta", "transferencia"],
         },
       ]);
     }

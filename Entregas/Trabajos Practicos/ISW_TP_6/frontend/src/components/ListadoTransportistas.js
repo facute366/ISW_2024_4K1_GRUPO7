@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
+import { useForm } from '@formspree/react';
 
 const ListadoTransportistas = ({ lista }) => {
   const [transportistaSeleccionado, setTransportistaSeleccionado] = useState(null);
   const [formaDePagoSeleccionada, setFormaDePagoSeleccionada] = useState('');
-
+  
   const [numeroTarjeta, setNumeroTarjeta] = useState('');
   const [pinTarjeta, setPinTarjeta] = useState('');
   const [nombreTarjeta, setNombreTarjeta] = useState('');
@@ -11,10 +12,13 @@ const ListadoTransportistas = ({ lista }) => {
   const [numeroDocumento, setNumeroDocumento] = useState('');
 
   const [errores, setErrores] = useState({});
+  
+  // Configurar envío de correo con Formspree
+  const [state, handleSubmit] = useForm("xovazbgd");
 
   const handleSeleccionar = (transportista) => {
     setTransportistaSeleccionado(transportista);
-    setFormaDePagoSeleccionada(''); // Reiniciar selección de forma de pago
+    setFormaDePagoSeleccionada(''); 
     setErrores({});
   };
 
@@ -25,7 +29,6 @@ const ListadoTransportistas = ({ lista }) => {
   const validarFormulario = () => {
     const nuevosErrores = {};
 
-    
     if (formaDePagoSeleccionada === 'tarjeta') {
       if (!/^\d{13,18}$/.test(numeroTarjeta)) {
         nuevosErrores.numeroTarjeta = 'El número de tarjeta debe tener entre 13 y 18 dígitos.';
@@ -33,24 +36,19 @@ const ListadoTransportistas = ({ lista }) => {
         nuevosErrores.numeroTarjeta = 'La tarjeta no tiene saldo.';
       }
 
-      
       if (!/^\d{1,4}$/.test(pinTarjeta)) {
         nuevosErrores.pinTarjeta = 'El PIN debe ser un número de hasta 4 dígitos.';
       }
 
-      
       if (!/^[a-zA-Z\s]+$/.test(nombreTarjeta)) {
         nuevosErrores.nombreTarjeta = 'El nombre solo debe contener letras.';
       }
 
-      
       if (tipoDocumento === 'dni') {
-        
         if (!/^\d+$/.test(numeroDocumento)) {
           nuevosErrores.numeroDocumento = 'El DNI debe contener solo números.';
         }
       } else if (tipoDocumento === 'pasaporte') {
-        
         if (!/^[a-zA-Z0-9]+$/.test(numeroDocumento)) {
           nuevosErrores.numeroDocumento = 'El pasaporte debe contener solo letras y números.';
         }
@@ -61,14 +59,27 @@ const ListadoTransportistas = ({ lista }) => {
     return Object.keys(nuevosErrores).length === 0;
   };
 
-  const handleConfirmar = () => {
-    if (validarFormulario()) {
-      if (formaDePagoSeleccionada === 'tarjeta') {
-        alert(`Pago con tarjeta confirmado para el transportista ${transportistaSeleccionado.nombre}.`);
-      } else {
-        alert(`Transportista ${transportistaSeleccionado.nombre} registrado correctamente con forma de pago: ${formaDePagoSeleccionada}`);
-      }
+  const handleConfirmar = async (e) => {
+    e.preventDefault();
+    if (!validarFormulario()) {
+      return;
     }
+
+    // Enviar correo usando Formspree
+    await handleSubmit({
+      email: "cliente@example.com", // Cambia este correo por el del cliente
+      message: `
+        La cotización ha sido aceptada.\n
+        Forma de pago: ${formaDePagoSeleccionada}\n
+        ${formaDePagoSeleccionada === 'tarjeta' ? `
+          Tarjeta: ${numeroTarjeta}\n
+          Nombre en la tarjeta: ${nombreTarjeta}\n
+          Documento: ${numeroDocumento}
+        ` : ''}
+      `,
+    });
+
+    alert(`Transportista ${transportistaSeleccionado.nombre} registrado y correo enviado correctamente.`);
   };
 
   return (
@@ -116,44 +127,43 @@ const ListadoTransportistas = ({ lista }) => {
               ))}
             </select></p>
 
-            {/* Mostrar inputs adicionales si la forma de pago es "Tarjeta" */}
             {formaDePagoSeleccionada === 'tarjeta' && (
               <div className="mt-3">
                 <div>
-                  <label> <strong> Número de Tarjeta:</strong></label>
+                  <label>Número de Tarjeta:</label>
                   <input
                     type="text"
                     value={numeroTarjeta}
                     onChange={(e) => setNumeroTarjeta(e.target.value)}
                     placeholder="Número de tarjeta"
                   />
-                  {errores.numeroTarjeta && <p style={{ color: 'red' }}>{errores.numeroTarjeta}</p>}
+                  {errores.numeroTarjeta && <p className="text-danger">{errores.numeroTarjeta}</p>}
                 </div>
 
                 <div>
-                  <label><strong>PIN:</strong></label>
+                  <label>PIN:</label>
                   <input
                     type="password"
                     value={pinTarjeta}
                     onChange={(e) => setPinTarjeta(e.target.value)}
                     placeholder="PIN"
                   />
-                  {errores.pinTarjeta && <p style={{ color: 'red' }}>{errores.pinTarjeta}</p>}
+                  {errores.pinTarjeta && <p className="text-danger">{errores.pinTarjeta}</p>}
                 </div>
 
                 <div>
-                  <label><strong>Nombre Completo:</strong></label>
+                  <label>Nombre Completo:</label>
                   <input
                     type="text"
                     value={nombreTarjeta}
                     onChange={(e) => setNombreTarjeta(e.target.value)}
                     placeholder="Nombre completo"
                   />
-                  {errores.nombreTarjeta && <p style={{ color: 'red' }}>{errores.nombreTarjeta}</p>}
+                  {errores.nombreTarjeta && <p className="text-danger">{errores.nombreTarjeta}</p>}
                 </div>
 
                 <div>
-                  <label><strong>Tipo de Documento:</strong></label>
+                  <label>Tipo de Documento:</label>
                   <select value={tipoDocumento} onChange={(e) => setTipoDocumento(e.target.value)}>
                     <option value="dni">DNI</option>
                     <option value="pasaporte">Pasaporte</option>
@@ -161,26 +171,23 @@ const ListadoTransportistas = ({ lista }) => {
                 </div>
 
                 <div>
-                  {/* Cambia el texto según el tipo de documento */}
-                  <label>{tipoDocumento === 'dni' ? 'Número de Documento' : 'Número de Pasaporte'}:</label>
+                  <label>Número de Documento:</label>
                   <input
                     type="text"
                     value={numeroDocumento}
                     onChange={(e) => setNumeroDocumento(e.target.value)}
-                    placeholder={tipoDocumento === 'dni' ? 'Número de documento' : 'Número de pasaporte'}
+                    placeholder="Número de documento"
                   />
-                  {errores.numeroDocumento && <p style={{ color: 'red' }}>{errores.numeroDocumento}</p>}
+                  {errores.numeroDocumento && <p className="text-danger">{errores.numeroDocumento}</p>}
                 </div>
               </div>
             )}
 
-            <button
-              className="btn btn-success mt-3"
-              onClick={handleConfirmar}
-              disabled={!formaDePagoSeleccionada}
-            >
-              Confirmar Registro
-            </button>
+            <form onSubmit={handleConfirmar}>
+              <button type="submit" className="btn btn-success mt-3" disabled={!formaDePagoSeleccionada}>
+                Confirmar y Enviar Correo
+              </button>
+            </form>
           </div>
         </div>
       )}
