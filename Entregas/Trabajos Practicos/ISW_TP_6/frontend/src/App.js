@@ -1,8 +1,8 @@
 import './App.css';
 import {Menu} from './components/Menu';
 import { Inicio } from './components/Inicio';
-import Articulos from './components/Articulos';
-import Acciones from './components/Acciones';
+import Transportistas from './components/transportistas';
+import Carga from './components/Carga';
 
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 
@@ -15,8 +15,8 @@ function App() {
           <div className="divBody">
             <Routes>
               <Route path="/inicio" element={<Inicio />} />
-              <Route path="/articulos" element={<Articulos />} />
-              <Route path="/acciones" element={<Acciones />} />
+              <Route path="/Transportistas" element={<Transportistas />} />
+              <Route path="/Carga" element={<Carga />} />
               <Route path="*" element={<Navigate to="/inicio" replace />} />
             </Routes>
           </div>

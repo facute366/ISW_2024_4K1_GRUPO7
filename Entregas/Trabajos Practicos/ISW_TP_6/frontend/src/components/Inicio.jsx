@@ -10,7 +10,7 @@ function Inicio() {
         style={{ backgroundColor: "lightgray" }}
       >
         <h1>Ejercicio Integrador</h1>
-        <p>Practica simulacro parcial...</p>
+        <p>ingenieria y calidad de software</p>
       </div>
     </div>
   );

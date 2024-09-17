@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ListadoArticulos = ({ lista }) => {
+const ListadoCarga = ({ lista }) => {
   
   return (
     <div className="container mt-3">
@@ -32,4 +32,4 @@ const ListadoArticulos = ({ lista }) => {
   );
 };
 
-export default ListadoArticulos;
+export default ListadoCarga;
