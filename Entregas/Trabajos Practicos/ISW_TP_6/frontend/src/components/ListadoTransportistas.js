@@ -1,3 +1,4 @@
+import Swal from 'sweetalert2';
 import React, { useState, useEffect } from 'react';
 import { useForm } from '@formspree/react';
 import { useLocation } from 'react-router-dom';
@@ -41,22 +42,28 @@ const ListadoTransportistas = ({ lista }) => {
 
   const validarFormulario = () => {
     const nuevosErrores = {};
-
+  
     if (formaDePagoSeleccionada === 'tarjeta') {
       if (!/^\d{13,18}$/.test(numeroTarjeta)) {
         nuevosErrores.numeroTarjeta = 'El número de tarjeta debe tener entre 13 y 18 dígitos.';
       } else if (numeroTarjeta.startsWith('10')) {
+        // Mostrar alerta de tarjeta sin saldo usando SweetAlert2
+        Swal.fire({
+          icon: 'error',
+          title: 'Tarjeta rechazada',
+          text: 'La tarjeta no tiene saldo suficiente.',
+        });
         nuevosErrores.numeroTarjeta = 'La tarjeta no tiene saldo.';
       }
-
+  
       if (!/^\d{1,4}$/.test(pinTarjeta)) {
         nuevosErrores.pinTarjeta = 'El PIN debe ser un número de hasta 4 dígitos.';
       }
-
+  
       if (!/^[a-zA-Z\s]+$/.test(nombreTarjeta)) {
         nuevosErrores.nombreTarjeta = 'El nombre solo debe contener letras.';
       }
-
+  
       if (tipoDocumento === 'dni') {
         if (!/^\d+$/.test(numeroDocumento)) {
           nuevosErrores.numeroDocumento = 'El DNI debe contener solo números.';
@@ -67,10 +74,11 @@ const ListadoTransportistas = ({ lista }) => {
         }
       }
     }
-
+  
     setErrores(nuevosErrores);
     return Object.keys(nuevosErrores).length === 0;
   };
+  
 
   const handleConfirmar = async (e) => {
     e.preventDefault();
@@ -97,23 +105,36 @@ const ListadoTransportistas = ({ lista }) => {
       carga.id === cargaSeleccionada.id ? cargaActualizada : carga
     );
     localStorage.setItem('cargas', JSON.stringify(nuevasCargas));
-
-    // Enviar correo usando Formspree
-    await handleSubmit({
+  
+    // Mostrar la primera alerta de confirmación de cotización
+    Swal.fire({
+      icon: 'success',
+      title: 'Cotización confirmada',
+      html: `Se ha confirmado su cotización.<br><br>Forma de pago seleccionada: <strong>${formaDePagoSeleccionada}</strong>.`,
+    }).then(() => {
+      // Simular número de pago devuelto por la pasarela (número aleatorio de 9 dígitos)
+      const numeroDePago = Math.floor(100000000 + Math.random() * 900000000);
+  
+      // Mostrar la segunda alerta con confirmación del pago y número de pago
+      Swal.fire({
+        icon: 'success',
+        title: 'Pago procesado',
+        html: `El pago se ha procesado correctamente.<br><br>
+               Número de pago: <strong>${numeroDePago}</strong>.`,
+      }); //Forma de pago seleccionada: <strong>${formaDePagoSeleccionada}</strong>.<br><br>
+  
+      // Enviar correo usando Formspree (solo con el mensaje básico)
+    handleSubmit({
       email: "cliente@example.com", // Cambia este correo por el del cliente
       message: `
         La cotización ha sido aceptada.\n
-        Forma de pago: ${formaDePagoSeleccionada}\n
-        ${formaDePagoSeleccionada === 'tarjeta' ? `
-          Tarjeta: ${numeroTarjeta}\n
-          Nombre en la tarjeta: ${nombreTarjeta}\n
-          Documento: ${numeroDocumento}
-        ` : ''}
+        Forma de pago: ${formaDePagoSeleccionada}
       `,
+      });
     });
-
-    alert(`Transportista ${transportistaSeleccionado.nombre} registrado y correo enviado correctamente.`);
   };
+  
+  
 
 
   return (
