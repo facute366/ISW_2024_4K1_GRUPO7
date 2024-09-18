@@ -45,7 +45,7 @@ const ListadoTransportistas = ({ lista }) => {
   const validarFormulario = () => {
     const nuevosErrores = {};
   
-    if (formaDePagoSeleccionada === 'tarjeta') {
+    if (formaDePagoSeleccionada === 'Tarjeta de Débito' || formaDePagoSeleccionada === 'Tarjeta de Crédito') {
       if (!/^\d{13,18}$/.test(numeroTarjeta)) {
         nuevosErrores.numeroTarjeta = 'El número de tarjeta debe tener entre 13 y 18 dígitos.';
       } else if (numeroTarjeta.startsWith('10')) {
@@ -98,7 +98,7 @@ const ListadoTransportistas = ({ lista }) => {
     // Actualizar el estado de la carga a "confirmado"
     const cargaActualizada = {
       ...cargaSeleccionada,
-      estado: 'confirmado',
+      estado: 'Confirmado',
     };
   
     // Actualizar en localStorage
@@ -130,7 +130,7 @@ const ListadoTransportistas = ({ lista }) => {
   
       // Enviar correo usando Formspree (solo con el mensaje básico)
       handleSubmit({
-        email: "cliente@example.com", // Cambia este correo por el del cliente
+        email: "agustinaron8@gmail.com", //Agustín va a ser el cliente simulado
         message: `
           La cotización ha sido aceptada.\n
           Forma de pago: ${formaDePagoSeleccionada}
@@ -150,7 +150,7 @@ const ListadoTransportistas = ({ lista }) => {
           <tr>
             <th>ID</th>
             <th>Nombre</th>
-            <th>Estrellas</th>
+            <th>Calificación</th>
             <th>Importe</th>
           </tr>
         </thead>
@@ -159,7 +159,7 @@ const ListadoTransportistas = ({ lista }) => {
             <tr id="transportista" key={transportista.id} onClick={() => handleSeleccionar(transportista)}>
               <td>{transportista.id}</td>
               <td>{transportista.nombre}</td>
-              <td>{transportista.estrellas}</td>
+              <td>{transportista.calificacion}</td>
               <td>{transportista.importe}</td>
             </tr>
           ))}
@@ -172,7 +172,7 @@ const ListadoTransportistas = ({ lista }) => {
             <h3>Detalles del Transportista Seleccionado</h3>
             <p><strong>ID:</strong> {transportistaSeleccionado.id}</p>
             <p><strong>Nombre:</strong> {transportistaSeleccionado.nombre}</p>
-            <p><strong>Estrellas:</strong> {transportistaSeleccionado.estrellas}</p>
+            <p><strong>Calificación:</strong> {transportistaSeleccionado.calificacion}</p>
             <p><strong>Fecha de Retiro:</strong> {transportistaSeleccionado.fechaDeRetiro}</p>
             <p><strong>Fecha de Entrega:</strong> {transportistaSeleccionado.fechaEntrega}</p>
             <p><strong>Importe:</strong> {transportistaSeleccionado.importe}</p>
@@ -187,7 +187,7 @@ const ListadoTransportistas = ({ lista }) => {
               ))}
             </select></p>
 
-            {formaDePagoSeleccionada === 'tarjeta' && (
+            {formaDePagoSeleccionada === 'Tarjeta de Débito' || formaDePagoSeleccionada === 'Tarjeta de Crédito'  && (
               <div id='container-pago' className="mt-3">
                 <div>
                   <label>Número de Tarjeta:</label>
