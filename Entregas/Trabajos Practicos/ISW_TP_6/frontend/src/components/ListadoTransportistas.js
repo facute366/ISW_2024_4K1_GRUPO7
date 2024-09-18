@@ -245,7 +245,7 @@ const ListadoTransportistas = ({ lista }) => {
 
             <form onSubmit={handleConfirmar}>
               <button type="submit" className="btn btn-success mt-3" disabled={!formaDePagoSeleccionada}>
-                Confirmar y Enviar Correo
+                Confirmar cotización
               </button>
             </form>
           </div>
