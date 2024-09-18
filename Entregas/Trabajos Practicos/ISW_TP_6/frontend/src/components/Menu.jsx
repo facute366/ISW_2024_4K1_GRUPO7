@@ -1,13 +1,14 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+
 
 function Menu() {
   return (
     <nav className="navbar navbar-dark bg-dark navbar-expand-md">
       <div className="container-fluid">
-        {/* <a className="navbar-brand" href="#!">
-          <i>Pymes</i>
-        </a> */}
+        {/* Botón de menú para dispositivos móviles */}
         <button
           className="navbar-toggler"
           type="button"
@@ -19,8 +20,9 @@ function Menu() {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
+        {/* Contenido colapsable del menú */}
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav mr-auto">
+          <ul className="navbar-nav ms-auto"> {/* Cambié mr-auto a ms-auto para alineación derecha */}
             <li className="nav-item">
               <NavLink className="nav-link" to="/inicio">
                 Inicio
@@ -38,4 +40,4 @@ function Menu() {
   );
 }
 
-export {Menu};
+export { Menu };

@@ -32,49 +32,52 @@ const Carga = () => {
   
 
   return (
-    <div className="container mt-3">
-      <h2>Listado de Cargas</h2>
-      {lista.length === 0 ? (
-        <p>No hay cargas disponibles.</p>
-      ) : (
-        <table className="table table-striped">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Nombre</th>
-              <th>Peso</th>
-              <th>Ubicación</th>
-              <th>Fecha Alta</th>
-              <th>Activo</th>
-              <th>Estado</th>
-              <th>Acción</th>
+<div id="conteiner-tabla" className="container mt-3">
+  <h2>Listado de Cargas</h2>
+  {lista.length === 0 ? (
+    <p>No hay cargas disponibles.</p>
+  ) : (
+    <div className="table-responsive">
+      <table className="table table-striped">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Peso</th>
+            <th>Ubicación</th>
+            <th>Fecha Alta</th>
+            <th>Activo</th>
+            <th>Estado</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          {lista.map((item) => (
+            <tr key={item.id}>
+              <td>{item.id}</td>
+              <td>{item.nombre}</td>
+              <td>{item.peso}</td>
+              <td>{item.ubicacion}</td>
+              <td>{item.fechaAlta}</td>
+              <td>{item.activo ? 'True' : 'False'}</td>
+              <td>{item.estado}</td>
+              <td>
+                <button
+                  type="button"
+                  onClick={() => handleRedirect(item)}
+                  className="btn btn-primary"
+                >
+                  Enviar
+                </button>
+              </td>
             </tr>
-          </thead>
-          <tbody>
-            {lista.map((item) => (
-              <tr key={item.id}>
-                <td>{item.id}</td>
-                <td>{item.nombre}</td>
-                <td>{item.peso}</td>
-                <td>{item.ubicacion}</td>
-                <td>{item.fechaAlta}</td>
-                <td>{item.activo ? 'True' : 'False'}</td>
-                <td>{item.estado}</td>
-                <td>
-                  <button
-                    type="button"
-                    onClick={() => handleRedirect(item)}
-                    className="btn btn-primary"
-                  >
-                    Enviar
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
+          ))}
+        </tbody>
+      </table>
     </div>
+  )}
+</div>
+
   );
 };
 

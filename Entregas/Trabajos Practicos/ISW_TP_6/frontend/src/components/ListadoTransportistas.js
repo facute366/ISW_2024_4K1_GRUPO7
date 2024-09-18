@@ -151,7 +151,7 @@ const ListadoTransportistas = ({ lista }) => {
         </thead>
         <tbody>
           {lista.map((transportista) => (
-            <tr key={transportista.id} onClick={() => handleSeleccionar(transportista)}>
+            <tr id="transportista" key={transportista.id} onClick={() => handleSeleccionar(transportista)}>
               <td>{transportista.id}</td>
               <td>{transportista.nombre}</td>
               <td>{transportista.estrellas}</td>
@@ -183,7 +183,7 @@ const ListadoTransportistas = ({ lista }) => {
             </select></p>
 
             {formaDePagoSeleccionada === 'tarjeta' && (
-              <div className="mt-3">
+              <div id='container-pago' className="mt-3">
                 <div>
                   <label>Número de Tarjeta:</label>
                   <input

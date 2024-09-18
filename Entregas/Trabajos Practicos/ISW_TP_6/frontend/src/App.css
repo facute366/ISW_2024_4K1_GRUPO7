@@ -2,6 +2,10 @@
   text-align: center;
 }
 
+h1{
+  margin-top: 20px;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -64,4 +68,42 @@
 .loading-container p {
   font-size: 1.2rem;
   color: #555;
+}
+
+
+/* Asegurarse de que la tabla sea desplazable en dispositivos pequeños */
+.table-responsive {
+  overflow-x: auto;
+}
+
+/* Ajustar el ancho de las celdas si es necesario */
+.table td, .table th {
+  white-space: nowrap;
+}
+
+/*Forma de pago*/
+
+
+
+#container-pago div{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#container-pago div input, #container-pago div select{
+  width: 30%;
+}
+
+@media (max-width: 768px) {
+  #container-pago div input, #container-pago div select{
+    width: 100%;
+  }
+}
+
+
+#transportista:hover{
+  transform: scale(1.02);
+  transition: all 200ms;
+  cursor: pointer;
 }
