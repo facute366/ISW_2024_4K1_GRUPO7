@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
-
 import ListadoTransportistas from './ListadoTransportistas';
 
-const Transportistas = () => {
+const Transportistas = ({ cargaSeleccionada }) => {  // Recibe la carga seleccionada
   const { register, handleSubmit } = useForm();
   const [lista, setLista] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -92,8 +91,13 @@ const Transportistas = () => {
         </div>
       )}
       
-      {/* Mostrar listado de transportistas una vez que loading sea false y haya resultados */}
-      {!loading && lista && <ListadoTransportistas lista={lista} />}
+      {/* Mostrar listado de transportistas y pasar cargaSeleccionada */}
+      {!loading && lista && (
+        <ListadoTransportistas
+          lista={lista}
+          cargaSeleccionada={cargaSeleccionada} // Pasar la carga seleccionada
+        />
+      )}
     </div>
   );
 };

@@ -1,10 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm } from '@formspree/react';
+import { useLocation } from 'react-router-dom';
+
 
 const ListadoTransportistas = ({ lista }) => {
+  const location = useLocation();
+  const [cargaSeleccionada, setCargaSeleccionada] = useState(null);
+
+  useEffect(() => {
+    if (location.state && location.state.cargaSeleccionada) {
+      setCargaSeleccionada(location.state.cargaSeleccionada);
+    }
+  }, [location]);
   const [transportistaSeleccionado, setTransportistaSeleccionado] = useState(null);
   const [formaDePagoSeleccionada, setFormaDePagoSeleccionada] = useState('');
-  
+
   const [numeroTarjeta, setNumeroTarjeta] = useState('');
   const [pinTarjeta, setPinTarjeta] = useState('');
   const [nombreTarjeta, setNombreTarjeta] = useState('');
@@ -12,9 +22,10 @@ const ListadoTransportistas = ({ lista }) => {
   const [numeroDocumento, setNumeroDocumento] = useState('');
 
   const [errores, setErrores] = useState({});
+  
+  // Recibir carga seleccionada como prop
+  const [cargaActualizada, setCargaActualizada] = useState(cargaSeleccionada);
 
-  
-  
   // Configurar envío de correo con Formspree
   const [state, handleSubmit] = useForm("xovazbgd");
 
@@ -63,9 +74,29 @@ const ListadoTransportistas = ({ lista }) => {
 
   const handleConfirmar = async (e) => {
     e.preventDefault();
+  
+    // Verifica si cargaSeleccionada está definida
+    if (!cargaSeleccionada || !cargaSeleccionada.id) {
+      alert("No se ha seleccionado ninguna carga.");
+      return;
+    }
+  
     if (!validarFormulario()) {
       return;
     }
+  
+    // Actualizar el estado de la carga a "confirmado"
+    const cargaActualizada = {
+      ...cargaSeleccionada,
+      estado: 'confirmado',
+    };
+  
+    // Actualizar en localStorage
+    const cargasGuardadas = JSON.parse(localStorage.getItem('cargas')) || [];
+    const nuevasCargas = cargasGuardadas.map((carga) =>
+      carga.id === cargaSeleccionada.id ? cargaActualizada : carga
+    );
+    localStorage.setItem('cargas', JSON.stringify(nuevasCargas));
 
     // Enviar correo usando Formspree
     await handleSubmit({
@@ -83,6 +114,7 @@ const ListadoTransportistas = ({ lista }) => {
 
     alert(`Transportista ${transportistaSeleccionado.nombre} registrado y correo enviado correctamente.`);
   };
+
 
   return (
     <div>

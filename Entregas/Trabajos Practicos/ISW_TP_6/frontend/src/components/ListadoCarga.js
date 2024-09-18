@@ -13,6 +13,7 @@ const ListadoCarga = ({ lista }) => {
             <th>Stock</th>
             <th>Fecha Alta</th>
             <th>Activo</th>
+            <th>Estado</th>
           </tr>
         </thead>
         <tbody>
@@ -24,6 +25,7 @@ const ListadoCarga = ({ lista }) => {
               <td>{item.Stock}</td>
               <td>{item.FechaAlta}</td>
               <td>{(item.Activo) ? 'True' : 'False'}</td>
+              <th>{item.estado}</th>
             </tr>
           ))}
         </tbody>
