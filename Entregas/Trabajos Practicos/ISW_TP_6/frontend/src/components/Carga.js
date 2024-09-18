@@ -62,13 +62,16 @@ const Carga = () => {
               <td>{item.activo ? 'True' : 'False'}</td>
               <td>{item.estado}</td>
               <td>
-                <button
-                  type="button"
-                  onClick={() => handleRedirect(item)}
-                  className="btn btn-primary"
-                >
-                  Enviar
-                </button>
+                {/* Mostrar el botón solo si el estado es "registrado" */}
+                {item.estado === "registrado" && (
+                  <button
+                    type="button"
+                    onClick={() => handleRedirect(item)}
+                    className="btn btn-primary"
+                  >
+                    Enviar
+                  </button>
+                )}
               </td>
             </tr>
           ))}
