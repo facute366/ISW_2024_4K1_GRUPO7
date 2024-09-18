@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { useForm } from '@formspree/react';
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar, faStarHalfAlt, faStar as faStarEmpty } from '@fortawesome/free-solid-svg-icons';
 
 
 const ListadoTransportistas = ({ lista }) => {
@@ -138,7 +140,26 @@ const ListadoTransportistas = ({ lista }) => {
       });
     });
   };
-  
+  const renderStars = (rating) => {
+    const fullStars = Math.floor(rating); // Estrellas llenas
+    const halfStar = rating % 1 !== 0; // Estrella media si el rating no es un número entero
+    const emptyStars = 5 - fullStars - (halfStar ? 1 : 0); // Estrellas vacías
+
+    return (
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        {/* Mostrar las estrellas */}
+        {Array(fullStars).fill(0).map((_, i) => (
+          <FontAwesomeIcon key={`full-${i}`} icon={faStar} style={{ color: '#FFD700' }} />
+        ))}
+        {halfStar && <FontAwesomeIcon icon={faStarHalfAlt} style={{ color: '#FFD700' }} />}
+        {Array(emptyStars).fill(0).map((_, i) => (
+          <FontAwesomeIcon key={`empty-${i}`} icon={faStarEmpty} style={{ color: '#D3D3D3' }} />
+        ))}
+        {/* Mostrar el número de la calificación */}
+        <span style={{ marginLeft: '8px', fontWeight: 'bold' }}>{rating}</span>
+      </div>
+    );
+  };
   
 
 
@@ -159,7 +180,7 @@ const ListadoTransportistas = ({ lista }) => {
             <tr id="transportista" key={transportista.id} onClick={() => handleSeleccionar(transportista)}>
               <td>{transportista.id}</td>
               <td>{transportista.nombre}</td>
-              <td>{transportista.calificacion}</td>
+              <td>{renderStars(transportista.calificacion)}</td>
               <td>{transportista.importe}</td>
             </tr>
           ))}
@@ -172,7 +193,7 @@ const ListadoTransportistas = ({ lista }) => {
             <h3>Detalles del Transportista Seleccionado</h3>
             <p><strong>ID:</strong> {transportistaSeleccionado.id}</p>
             <p><strong>Nombre:</strong> {transportistaSeleccionado.nombre}</p>
-            <p><strong>Calificación:</strong> {transportistaSeleccionado.calificacion}</p>
+            <td>{renderStars(transportistaSeleccionado.calificacion)}</td>
             <p><strong>Fecha de Retiro:</strong> {transportistaSeleccionado.fechaDeRetiro}</p>
             <p><strong>Fecha de Entrega:</strong> {transportistaSeleccionado.fechaEntrega}</p>
             <p><strong>Importe:</strong> {transportistaSeleccionado.importe}</p>
