@@ -187,7 +187,7 @@ const ListadoTransportistas = ({ lista }) => {
               ))}
             </select></p>
 
-            {formaDePagoSeleccionada === 'Tarjeta de Débito' || formaDePagoSeleccionada === 'Tarjeta de Crédito'  && (
+            {(formaDePagoSeleccionada === 'Tarjeta de Débito' || formaDePagoSeleccionada === 'Tarjeta de Crédito')  && (
               <div id='container-pago' className="mt-3">
                 <div>
                   <label>Número de Tarjeta:</label>
