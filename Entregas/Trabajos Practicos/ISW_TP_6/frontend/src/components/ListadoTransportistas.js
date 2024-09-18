@@ -1,28 +1,35 @@
 import Swal from 'sweetalert2';
 import React, { useState, useEffect } from 'react';
 import { useForm } from '@formspree/react';
-import { useLocation, useNavigate } from 'react-router-dom'; // Importar useNavigate
+import { useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
 
 const ListadoTransportistas = ({ lista }) => {
   const location = useLocation();
-  const navigate = useNavigate(); // Crear instancia de navigate
   const [cargaSeleccionada, setCargaSeleccionada] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (location.state && location.state.cargaSeleccionada) {
       setCargaSeleccionada(location.state.cargaSeleccionada);
     }
   }, [location]);
-
   const [transportistaSeleccionado, setTransportistaSeleccionado] = useState(null);
   const [formaDePagoSeleccionada, setFormaDePagoSeleccionada] = useState('');
+
   const [numeroTarjeta, setNumeroTarjeta] = useState('');
   const [pinTarjeta, setPinTarjeta] = useState('');
   const [nombreTarjeta, setNombreTarjeta] = useState('');
   const [tipoDocumento, setTipoDocumento] = useState('dni');
   const [numeroDocumento, setNumeroDocumento] = useState('');
-  const [errores, setErrores] = useState({});
 
+  const [errores, setErrores] = useState({});
+  
+  // Recibir carga seleccionada como prop
+  const [cargaActualizada, setCargaActualizada] = useState(cargaSeleccionada);
+
+  // Configurar envío de correo con Formspree
   const [state, handleSubmit] = useForm("xovazbgd");
 
   const handleSeleccionar = (transportista) => {
@@ -42,6 +49,7 @@ const ListadoTransportistas = ({ lista }) => {
       if (!/^\d{13,18}$/.test(numeroTarjeta)) {
         nuevosErrores.numeroTarjeta = 'El número de tarjeta debe tener entre 13 y 18 dígitos.';
       } else if (numeroTarjeta.startsWith('10')) {
+        // Mostrar alerta de tarjeta sin saldo usando SweetAlert2
         Swal.fire({
           icon: 'error',
           title: 'Tarjeta rechazada',
@@ -72,56 +80,67 @@ const ListadoTransportistas = ({ lista }) => {
     setErrores(nuevosErrores);
     return Object.keys(nuevosErrores).length === 0;
   };
+  
 
   const handleConfirmar = async (e) => {
     e.preventDefault();
-
+  
+    // Verifica si cargaSeleccionada está definida
     if (!cargaSeleccionada || !cargaSeleccionada.id) {
       alert("No se ha seleccionado ninguna carga.");
       return;
     }
-
+  
     if (!validarFormulario()) {
       return;
     }
-
+  
+    // Actualizar el estado de la carga a "confirmado"
     const cargaActualizada = {
       ...cargaSeleccionada,
       estado: 'confirmado',
     };
-
+  
+    // Actualizar en localStorage
     const cargasGuardadas = JSON.parse(localStorage.getItem('cargas')) || [];
     const nuevasCargas = cargasGuardadas.map((carga) =>
       carga.id === cargaSeleccionada.id ? cargaActualizada : carga
     );
     localStorage.setItem('cargas', JSON.stringify(nuevasCargas));
-
+  
+    // Mostrar la primera alerta de confirmación de cotización
     Swal.fire({
       icon: 'success',
       title: 'Cotización confirmada',
       html: `Se ha confirmado su cotización.<br><br>Forma de pago seleccionada: <strong>${formaDePagoSeleccionada}</strong>.`,
     }).then(() => {
+      // Simular número de pago devuelto por la pasarela (número aleatorio de 9 dígitos)
       const numeroDePago = Math.floor(100000000 + Math.random() * 900000000);
-
+  
+      // Mostrar la segunda alerta con confirmación del pago y número de pago
       Swal.fire({
         icon: 'success',
         title: 'Pago procesado',
         html: `El pago se ha procesado correctamente.<br><br>
                Número de pago: <strong>${numeroDePago}</strong>.`,
       }).then(() => {
-        handleSubmit({
-          email: "cliente@example.com",
-          message: `
-            La cotización ha sido aceptada.\n
-            Forma de pago: ${formaDePagoSeleccionada}
-          `,
-        }).then(() => {
-          // Redireccionar a la página de cargas después de enviar el correo
-          navigate('/cargas'); // Cambia '/cargas' por la ruta deseada
-        });
+        // Redirigir a la página de cargas
+        navigate('/cargas');
+      });
+  
+      // Enviar correo usando Formspree (solo con el mensaje básico)
+      handleSubmit({
+        email: "cliente@example.com", // Cambia este correo por el del cliente
+        message: `
+          La cotización ha sido aceptada.\n
+          Forma de pago: ${formaDePagoSeleccionada}
+        `,
       });
     });
   };
+  
+  
+
 
   return (
     <div>
