@@ -25,7 +25,7 @@ const Transportistas = ({ cargaSeleccionada }) => {  // Recibe la carga seleccio
           fechaDeRetiro: "2024-09-01",
           fechaEntrega: "2024-09-07",
           importe: 3500,
-          formasDePago: ["efectivo", "tarjeta", "transferencia"],
+          formasDePago: ["efectivo", "tarjeta"],
         },
         {
           id: 2,
@@ -43,7 +43,7 @@ const Transportistas = ({ cargaSeleccionada }) => {  // Recibe la carga seleccio
           fechaDeRetiro: "2024-09-03",
           fechaEntrega: "2024-09-09",
           importe: 5000,
-          formasDePago: ["efectivo", "tarjeta", "transferencia"],
+          formasDePago: ["efectivo", "transferencia"],
         },
         {
           id: 4,
@@ -52,7 +52,7 @@ const Transportistas = ({ cargaSeleccionada }) => {  // Recibe la carga seleccio
           fechaDeRetiro: "2024-09-05",
           fechaEntrega: "2024-09-10",
           importe: 3800,
-          formasDePago: ["efectivo", "tarjeta", "transferencia"],
+          formasDePago: ["tarjeta", "transferencia"],
         },
         {
           id: 5,
@@ -71,13 +71,13 @@ const Transportistas = ({ cargaSeleccionada }) => {  // Recibe la carga seleccio
 
   return (
     <div className="container">
-      <h1>Transportistas</h1>
+      <h1>Cotizaciones</h1>
       <hr />
       <div className="card mb-3">
         <div className="card-body">
           <form onSubmit={handleSubmit(onSubmit)}>
             <button type="submit" className="btn btn-primary">
-              Buscar
+              Buscar cotizaciones
             </button>
           </form>
         </div>
@@ -87,7 +87,7 @@ const Transportistas = ({ cargaSeleccionada }) => {  // Recibe la carga seleccio
       {loading && (
         <div className="loading-container">
           <div className="spinner"></div>
-          <p>Cargando transportistas...</p>
+          <p>Cargando cotizaciones...</p>
         </div>
       )}
       

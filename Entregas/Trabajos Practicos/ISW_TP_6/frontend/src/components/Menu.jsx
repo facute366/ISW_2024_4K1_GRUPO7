@@ -30,7 +30,7 @@ function Menu() {
             </li>
             <li className="nav-item">
               <NavLink className="nav-link" to="/Carga">
-                Carga
+                Cargas
               </NavLink>
             </li>
           </ul>

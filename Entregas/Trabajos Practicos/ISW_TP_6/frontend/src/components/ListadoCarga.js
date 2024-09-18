@@ -12,7 +12,6 @@ const ListadoCarga = ({ lista }) => {
             <th>Precio</th>
             <th>Stock</th>
             <th>Fecha Alta</th>
-            <th>Activo</th>
             <th>Estado</th>
           </tr>
         </thead>
@@ -24,7 +23,6 @@ const ListadoCarga = ({ lista }) => {
               <td>{item.Precio}</td>
               <td>{item.Stock}</td>
               <td>{item.FechaAlta}</td>
-              <td>{(item.Activo) ? 'True' : 'False'}</td>
               <th>{item.estado}</th>
             </tr>
           ))}

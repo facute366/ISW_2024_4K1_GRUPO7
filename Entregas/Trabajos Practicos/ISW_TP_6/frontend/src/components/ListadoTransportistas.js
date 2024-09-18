@@ -144,7 +144,7 @@ const ListadoTransportistas = ({ lista }) => {
 
   return (
     <div>
-      <h2>Listado de Transportistas</h2>
+      <h2>Listado de Cotizaciones</h2>
       <table className="table table-striped">
         <thead>
           <tr>
