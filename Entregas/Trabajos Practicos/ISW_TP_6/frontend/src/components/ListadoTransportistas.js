@@ -32,7 +32,7 @@ const ListadoTransportistas = ({ lista }) => {
   const [cargaActualizada, setCargaActualizada] = useState(cargaSeleccionada);
 
   // Configurar envío de correo con Formspree
-  const [state, handleSubmit] = useForm("xovazbgd");
+  const [state, handleSubmit] = useForm("mkgwlgvp");
 
   const handleSeleccionar = (transportista) => {
     setTransportistaSeleccionado(transportista);
@@ -134,7 +134,7 @@ const ListadoTransportistas = ({ lista }) => {
   
         // Enviar correo usando Formspree (solo con el mensaje básico)
         handleSubmit({
-          email: "agustinaron8@gmail.com", // Agustín va a ser el cliente simulado
+          email: "cliente@example.com", // Agustín va a ser el cliente simulado
           message: `
             La cotización ha sido aceptada.\n
             Forma de pago: ${formaDePagoSeleccionada}
@@ -155,7 +155,7 @@ const ListadoTransportistas = ({ lista }) => {
   
       // Enviar correo usando Formspree
       handleSubmit({
-        email: "agustinaron8@gmail.com", // Agustín va a ser el cliente simulado
+        email: "cliente@example.com", // Agustín va a ser el cliente simulado
         message: `
           La cotización ha sido aceptada.\n
           Forma de pago: ${formaDePagoSeleccionada}
