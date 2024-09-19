@@ -41,7 +41,6 @@ const Carga = () => {
       <table className="table table-striped">
         <thead>
           <tr>
-            <th>ID</th>
             <th>Nombre</th>
             <th>Peso</th>
             <th>Ubicación</th>
@@ -53,7 +52,6 @@ const Carga = () => {
         <tbody>
           {lista.map((item) => (
             <tr key={item.id}>
-              <td>{item.id}</td>
               <td>{item.nombre}</td>
               <td>{item.peso}</td>
               <td>{item.ubicacion}</td>
