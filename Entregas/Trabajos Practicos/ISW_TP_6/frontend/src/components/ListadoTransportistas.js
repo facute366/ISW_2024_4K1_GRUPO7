@@ -110,36 +110,60 @@ const ListadoTransportistas = ({ lista }) => {
     );
     localStorage.setItem('cargas', JSON.stringify(nuevasCargas));
   
-    // Mostrar la primera alerta de confirmación de cotización
-    Swal.fire({
-      icon: 'success',
-      title: 'Cotización confirmada',
-      html: `Se ha confirmado su cotización.<br><br>Forma de pago seleccionada: <strong>${formaDePagoSeleccionada}</strong>.`,
-    }).then(() => {
-      // Simular número de pago devuelto por la pasarela (número aleatorio de 9 dígitos)
-      const numeroDePago = Math.floor(100000000 + Math.random() * 900000000);
+    // Simular número de pago devuelto por la pasarela (número aleatorio de 9 dígitos)
+    const numeroDePago = Math.floor(100000000 + Math.random() * 900000000);
   
-      // Mostrar la segunda alerta con confirmación del pago y número de pago
+    // Verificar si la forma de pago es con tarjeta antes de mostrar la alerta de pago procesado
+    if (formaDePagoSeleccionada === 'Tarjeta de Débito' || formaDePagoSeleccionada === 'Tarjeta de Crédito') {
+      // Mostrar la alerta de pago procesado
       Swal.fire({
         icon: 'success',
         title: 'Pago procesado',
         html: `El pago se ha procesado correctamente.<br><br>
                Número de pago: <strong>${numeroDePago}</strong>.`,
       }).then(() => {
+        // Mostrar la alerta de cotización confirmada
+        Swal.fire({
+          icon: 'success',
+          title: 'Cotización confirmada',
+          html: `Se ha confirmado su cotización.<br><br>Forma de pago seleccionada: <strong>${formaDePagoSeleccionada}</strong>.`,
+        }).then(() => {
+          // Redirigir a la página de cargas
+          navigate('/cargas');
+        });
+  
+        // Enviar correo usando Formspree (solo con el mensaje básico)
+        handleSubmit({
+          email: "agustinaron8@gmail.com", // Agustín va a ser el cliente simulado
+          message: `
+            La cotización ha sido aceptada.\n
+            Forma de pago: ${formaDePagoSeleccionada}
+          `,
+        });
+      });
+    } else {
+      // Si no es tarjeta, solo mostrar la alerta de cotización confirmada
+      Swal.fire({
+        icon: 'success',
+        title: 'Cotización confirmada',
+        html: `Se ha confirmado su cotización.<br><br>Forma de pago seleccionada: <strong>${formaDePagoSeleccionada}</strong>.`,
+      }).then(() => {
         // Redirigir a la página de cargas
         navigate('/cargas');
       });
   
-      // Enviar correo usando Formspree (solo con el mensaje básico)
+      // Enviar correo usando Formspree
       handleSubmit({
-        email: "agustinaron8@gmail.com", //Agustín va a ser el cliente simulado
+        email: "agustinaron8@gmail.com", // Agustín va a ser el cliente simulado
         message: `
           La cotización ha sido aceptada.\n
           Forma de pago: ${formaDePagoSeleccionada}
         `,
       });
-    });
+    }
   };
+  
+  
   const renderStars = (rating) => {
     const fullStars = Math.floor(rating); // Estrellas llenas
     const halfStar = rating % 1 !== 0; // Estrella media si el rating no es un número entero

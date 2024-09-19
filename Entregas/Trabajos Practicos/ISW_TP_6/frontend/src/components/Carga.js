@@ -15,11 +15,11 @@ const Carga = () => {
       setLista(cargasGuardadas);
     } else {
       const listaInicial = [
-        { id: 1, nombre: "Paquete A", peso: "5kg", ubicacion: "Almacén 3", fechaAlta: "01-09-2024", estado: "Registrado" },
-        { id: 2, nombre: "Paquete B", peso: "2.5kg", ubicacion: "Almacén 1", fechaAlta: "05-09-2024", estado: "Registrado" },
-        { id: 3, nombre: "Paquete C", peso: "3kg", ubicacion: "Almacén 2", fechaAlta: "10-09-2024", estado: "Registrado" },
-        { id: 4, nombre: "Paquete D", peso: "7kg", ubicacion: "Almacén 4", fechaAlta: "12-09-2024", estado: "Registrado" },
-        { id: 5, nombre: "Paquete E", peso: "1.5kg", ubicacion: "Almacén 5", fechaAlta: "15-09-2024", estado: "Registrado" },
+        { id: 1, nombre: "Paquete A", peso: "5kg", ubicacion: "Almacén 3", fechaAlta: "01-09-2024", estado: "registrado" },
+        { id: 2, nombre: "Paquete B", peso: "2.5kg", ubicacion: "Almacén 1", fechaAlta: "05-09-2024", estado: "registrado" },
+        { id: 3, nombre: "Paquete C", peso: "3kg", ubicacion: "Almacén 2", fechaAlta: "10-09-2024", estado: "registrado" },
+        { id: 4, nombre: "Paquete D", peso: "7kg", ubicacion: "Almacén 4", fechaAlta: "12-09-2024", estado: "registrado" },
+        { id: 5, nombre: "Paquete E", peso: "1.5kg", ubicacion: "Almacén 5", fechaAlta: "15-09-2024", estado: "registrado" },
       ];
       setLista(listaInicial);
       localStorage.setItem('cargas', JSON.stringify(listaInicial));
@@ -61,7 +61,7 @@ const Carga = () => {
               <td>{item.estado}</td>
               <td>
                 {/* Mostrar el botón solo si el estado es "registrado" */}
-                {item.estado === "Registrado" && (
+                {item.estado === "registrado" && (
                   <button
                     type="button"
                     onClick={() => handleRedirect(item)}
