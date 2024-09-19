@@ -50,14 +50,6 @@ const ListadoTransportistas = ({ lista }) => {
     if (formaDePagoSeleccionada === 'Tarjeta de Débito' || formaDePagoSeleccionada === 'Tarjeta de Crédito') {
       if (!/^\d{13,18}$/.test(numeroTarjeta)) {
         nuevosErrores.numeroTarjeta = 'El número de tarjeta debe tener entre 13 y 18 dígitos.';
-      } else if (numeroTarjeta.startsWith('10')) {
-        // Mostrar alerta de tarjeta sin saldo usando SweetAlert2
-        Swal.fire({
-          icon: 'error',
-          title: 'Tarjeta rechazada',
-          text: 'La tarjeta no tiene saldo suficiente.',
-        });
-        nuevosErrores.numeroTarjeta = 'La tarjeta no tiene saldo.';
       }
   
       if (!/^\d{1,4}$/.test(pinTarjeta)) {
@@ -115,7 +107,15 @@ const ListadoTransportistas = ({ lista }) => {
   
     // Verificar si la forma de pago es con tarjeta antes de mostrar la alerta de pago procesado
     if (formaDePagoSeleccionada === 'Tarjeta de Débito' || formaDePagoSeleccionada === 'Tarjeta de Crédito') {
-      // Mostrar la alerta de pago procesado
+      if (numeroTarjeta.startsWith('10')){
+        // Mostrar alerta de tarjeta sin saldo usando SweetAlert2
+      Swal.fire({
+        icon: 'error',
+        title: 'Tarjeta rechazada',
+        text: 'La tarjeta no tiene saldo suficiente.',
+      });
+      } else {
+        // Mostrar la alerta de pago procesado
       Swal.fire({
         icon: 'success',
         title: 'Pago procesado',
@@ -141,6 +141,7 @@ const ListadoTransportistas = ({ lista }) => {
           `,
         });
       });
+      }
     } else {
       // Si no es tarjeta, solo mostrar la alerta de cotización confirmada
       Swal.fire({
