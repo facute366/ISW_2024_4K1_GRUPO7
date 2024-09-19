@@ -193,8 +193,7 @@ const ListadoTransportistas = ({ lista }) => {
       <table className="table table-striped">
         <thead>
           <tr>
-            <th>ID</th>
-            <th>Nombre</th>
+            <th>Nombre y Apellido</th>
             <th>Calificación</th>
             <th>Importe</th>
           </tr>
@@ -202,7 +201,6 @@ const ListadoTransportistas = ({ lista }) => {
         <tbody>
           {lista.map((transportista) => (
             <tr id="transportista" key={transportista.id} onClick={() => handleSeleccionar(transportista)}>
-              <td>{transportista.id}</td>
               <td>{transportista.nombre}</td>
               <td>{renderStars(transportista.calificacion)}</td>
               <td>{transportista.importe}</td>
@@ -215,8 +213,7 @@ const ListadoTransportistas = ({ lista }) => {
         <div className="card mt-3">
           <div className="card-body">
             <h3>Detalles del Transportista Seleccionado</h3>
-            <p><strong>ID:</strong> {transportistaSeleccionado.id}</p>
-            <p><strong>Nombre:</strong> {transportistaSeleccionado.nombre}</p>
+            <p><strong>Nombre y Apellido:</strong> {transportistaSeleccionado.nombre}</p>
             <td><strong>Calificación:</strong> {renderStars(transportistaSeleccionado.calificacion)}</td>
             <p><strong>Fecha de Retiro:</strong> {transportistaSeleccionado.fechaDeRetiro}</p>
             <p><strong>Fecha de Entrega:</strong> {transportistaSeleccionado.fechaEntrega}</p>
