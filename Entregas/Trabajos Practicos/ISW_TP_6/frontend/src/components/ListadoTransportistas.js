@@ -217,12 +217,12 @@ const ListadoTransportistas = ({ lista }) => {
             <h3>Detalles del Transportista Seleccionado</h3>
             <p><strong>ID:</strong> {transportistaSeleccionado.id}</p>
             <p><strong>Nombre:</strong> {transportistaSeleccionado.nombre}</p>
-            <td>{renderStars(transportistaSeleccionado.calificacion)}</td>
+            <td><strong>Calificación:</strong> {renderStars(transportistaSeleccionado.calificacion)}</td>
             <p><strong>Fecha de Retiro:</strong> {transportistaSeleccionado.fechaDeRetiro}</p>
             <p><strong>Fecha de Entrega:</strong> {transportistaSeleccionado.fechaEntrega}</p>
             <p><strong>Importe:</strong> {transportistaSeleccionado.importe}</p>
             
-            <p><strong>Forma de Pago:</strong>
+            <p><strong>Forma de Pago:  </strong>
             <select value={formaDePagoSeleccionada} onChange={handleFormaPagoChange}>
               <option value="">Selecciona una forma de pago</option>
               {transportistaSeleccionado.formasDePago.map((forma, index) => (

@@ -21,11 +21,11 @@ const Transportistas = ({ cargaSeleccionada }) => {  // Recibe la carga seleccio
         {
           id: 1,
           nombre: "Facundo Teggi",
-          calificacion: 4.8,
+          calificacion: 4.0,
           fechaDeRetiro: "01-10-2024",
           fechaEntrega: "07-10-2024",
           importe: 3500,
-          formasDePago: ["Efectivo", "Tarjeta de Débito", "Tarjeta de Crédito"],
+          formasDePago: ["Contado al retirar", "Tarjeta de Débito", "Tarjeta de Crédito"],
         },
         {
           id: 2,
@@ -34,7 +34,7 @@ const Transportistas = ({ cargaSeleccionada }) => {  // Recibe la carga seleccio
           fechaDeRetiro: "02-10-2024",
           fechaEntrega: "08-10-2024",
           importe: 4200,
-          formasDePago: ["Efectivo", "Tarjeta de Débito", "Tarjeta de Crédito", "Transferencia"],
+          formasDePago: ["Contado al retirar", "Tarjeta de Débito", "Tarjeta de Crédito", "Contado contra entrega"],
         },
         {
           id: 3,
@@ -43,16 +43,16 @@ const Transportistas = ({ cargaSeleccionada }) => {  // Recibe la carga seleccio
           fechaDeRetiro: "03-10-2024",
           fechaEntrega: "09-10-2024",
           importe: 5000,
-          formasDePago: ["Efectivo", "Transferencia"],
+          formasDePago: ["Contado al retirar", "Contado contra entrega"],
         },
         {
           id: 4,
           nombre: "Tito Montivero",
-          calificacion: 4.3,
+          calificacion: 3.8,
           fechaDeRetiro: "05-10-2024",
           fechaEntrega: "10-10-2024",
           importe: 3800,
-          formasDePago: ["Tarjeta de Débito", "Tarjeta de Crédito", "Transferencia"],
+          formasDePago: ["Tarjeta de Débito", "Tarjeta de Crédito", "Contado contra entrega"],
         },
         {
           id: 5,
@@ -61,7 +61,7 @@ const Transportistas = ({ cargaSeleccionada }) => {  // Recibe la carga seleccio
           fechaDeRetiro: "06-10-2024",
           fechaEntrega: "12-09-2024",
           importe: 4500,
-          formasDePago: ["Efectivo", "Tarjeta de Débito", "Tarjeta de Crédito", "Transferencia"],
+          formasDePago: ["Contado al retirar", "Tarjeta de Débito", "Tarjeta de Crédito", "Contado contra entrega"],
         },
       ]);
     } finally {
